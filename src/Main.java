@@ -14,7 +14,7 @@ void main() {
     //Execução
     while(controle) {
         //Selecionar opção
-        int opc = Integer.parseInt(JOptionPane.showInputDialog(null, "Sistema de gerenciamento de produtos: \n 1 - Inserir produto \n 2 - Listar produtos \n 3 - Buscar produto \n 4 -Excluir produto\n 0 - Sair \n Selecione uma opção:"));
+        int opc = Integer.parseInt(JOptionPane.showInputDialog(null, "Sistema de gerenciamento de produtos: \n 1 - Inserir produto \n 2 - Listar produtos \n 3 - Buscar produto \n 4 -Excluir produto\n 5 - Atualizar produto\n 0 - Sair \n Selecione uma opção:"));
 
         switch (opc) {
             case 1: //Inserir produto
@@ -43,6 +43,22 @@ void main() {
                     JOptionPane.showMessageDialog(null, produto.exibirProduto());
                 }
 
+                break;
+
+            case 4:
+                busca = Integer.parseInt(JOptionPane.showInputDialog("Digite o código do produto:"));
+                genProd.excluirProduto(busca);
+                break;
+
+            case 5:
+                cod = Integer.parseInt(JOptionPane.showInputDialog("Digite o código do produto:"));
+                nome = JOptionPane.showInputDialog("Digite o novo nome do produto:");
+                preco = Double.parseDouble(JOptionPane.showInputDialog("Digite o novo preço do produto:"));
+                descricao = JOptionPane.showInputDialog("Digite a nova descrição do produto:");
+                vencimento = JOptionPane.showInputDialog("Digite a nova data de vencimento do produto:");
+                quantidade = Integer.parseInt(JOptionPane.showInputDialog("Digite a nova quantidade do produto:"));
+                categoria = JOptionPane.showInputDialog("Digite a nova categoria do produto:");
+                genProd.atualizarProduto(cod, nome, preco, quantidade, vencimento, categoria, descricao);
                 break;
 
             case 0: //Sair
