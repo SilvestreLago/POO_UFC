@@ -3,11 +3,15 @@ public class GerenciamentoProdutos {
     public int tamanho;
     private int id;
     static int CODIGO = 200;
+    private String carrinho;
+    private double total;
 
     public GerenciamentoProdutos(int tamanho){
         this.tamanho = tamanho;
         this.produtos = new Produto[this.tamanho];
         this.id = 0;
+        this.carrinho = "";
+        this.total = 0;
     }
 
     public void adicionarProduto(Produto produto){
@@ -68,4 +72,14 @@ public class GerenciamentoProdutos {
             }
         }
     }
+
+    public void adicionarCarrinho(Produto produto, int quantidade){
+        this.carrinho = this.carrinho + "\nCodigo: " + produto.getCodigo() + "\n\tNome: " + produto.getNome() + "\n\tQuantidade: " + quantidade + "\n\tPreço: " + produto.getPreco() * quantidade + "\n";
+        this.total += produto.getPreco() * quantidade;
+    }
+
+    public String verCarrinho(){
+        return this.carrinho + "\nTotal: " + this.total +"\n";
+    }
+
 }
