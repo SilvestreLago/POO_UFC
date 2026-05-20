@@ -14,7 +14,7 @@ void main() {
     //Execução
     while(controle) {
         //Selecionar opção
-        int opc = Integer.parseInt(JOptionPane.showInputDialog(null, "Sistema de gerenciamento de produtos: \n 1 - Inserir produto \n 2 - Listar produtos \n 3 - Buscar produto \n 4 -Excluir produto\n 5 - Atualizar produto\n 6 - Adicionar no carrinho\n 7 - Ver carrinho\n 0 - Sair \n Selecione uma opção:"));
+        int opc = Integer.parseInt(JOptionPane.showInputDialog(null, "Sistema de gerenciamento de produtos: \n 1 - Inserir produto \n 2 - Listar produtos \n 3 - Buscar produto \n 4 -Excluir produto\n 5 - Atualizar produto\n 6 - Adicionar no carrinho\n 7 - Ver carrinho\n 8 - Verificar estoque\n 9 - Finalizar compra\n 0 - Sair \n Selecione uma opção:"));
 
         switch (opc) {
             case 1: //Inserir produto
@@ -84,8 +84,22 @@ void main() {
                 }
                 break;
 
-            case 7:
+            case 7: //Ver carrinho
                 JOptionPane.showMessageDialog(null, genProd.verCarrinho());
+                break;
+
+            case 8: //Ver itens sem com quantidade baixa em estoque
+                int margem = Integer.parseInt(JOptionPane.showInputDialog("Digite a margem desejada"));
+                if(margem == 0){
+                    JOptionPane.showMessageDialog(null, genProd.verificarEstoque());
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, genProd.verificarEstoque(margem));
+                }
+                break;
+
+            case 9: //Finalizar compra
+                JOptionPane.showMessageDialog(null, genProd.finalizarCompra());
                 break;
 
             case 0: //Sair

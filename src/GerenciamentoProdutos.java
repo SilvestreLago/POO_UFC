@@ -76,10 +76,51 @@ public class GerenciamentoProdutos {
     public void adicionarCarrinho(Produto produto, int quantidade){
         this.carrinho = this.carrinho + "\nCodigo: " + produto.getCodigo() + "\n\tNome: " + produto.getNome() + "\n\tQuantidade: " + quantidade + "\n\tPreço: " + produto.getPreco() * quantidade + "\n";
         this.total += produto.getPreco() * quantidade;
+        produto.setQuantidade(produto.getQuantidade() - quantidade);
     }
 
     public String verCarrinho(){
         return this.carrinho + "\nTotal: " + this.total +"\n";
     }
 
+    public String verificarEstoque(){
+        int i;
+        String conteudo = "";
+        if(this.id == 0){
+            return "Nenhum item encontrado no estoque.";
+        }
+        for(i = 0; i < this.id; ++i){
+            if(this.produtos[i].getQuantidade() == 0){
+                conteudo += "Código: " + this.produtos[i].getCodigo() + " Nome: "+ this.produtos[i].getNome() +" Descrição: " + this.produtos[i].getDescricao() + " Preço: " + this.produtos[i].getPreco() + "\n";
+            }
+        }
+        if(conteudo.equals("")){
+            return "Os produtos possuem itens.";
+        }
+        return conteudo;
+    }
+
+    public String verificarEstoque(int margem){
+        int i;
+        String conteudo = "";
+        if(this.id == 0){
+            return "Nenhum item encontrado no estoque.";
+        }
+        for(i = 0; i < this.id; ++i){
+            if(this.produtos[i].getQuantidade() <= margem){
+                conteudo += "Código: " + this.produtos[i].getCodigo() + " Nome: "+ this.produtos[i].getNome() +" Descrição: " + this.produtos[i].getDescricao() + " Preço: " + this.produtos[i].getPreco() + "\n";
+            }
+        }
+        if(conteudo.equals("")){
+            return "Os produtos possuem itens.";
+        }
+        return conteudo;
+    }
+
+    public String finalizarCompra(){
+        String conteudo =  this.carrinho + "\nTotal: " + this.total + "\n Compra concluída com sucesso!\n";
+        this.carrinho = "";
+        this.total = 0;
+        return conteudo;
+    }
 }
