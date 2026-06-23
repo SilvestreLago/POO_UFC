@@ -1,78 +1,81 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.loja.control;
+
+import com.mycompany.loja.model.Produto;
+import java.util.LinkedList;
+
+/**
+ *
+ * @author silvestre
+ */
 public class GerenciamentoProdutos {
-    private Produto produtos[];
-    public int tamanho;
-    private int id;
-    static int CODIGO = 200;
+    private LinkedList<Produto> produtos;
+    public static int CODIGO = 200;
+    private static GerenciamentoProdutos instance = null;
     private String carrinho;
     private double total;
 
-    public GerenciamentoProdutos(int tamanho){
-        this.tamanho = tamanho;
-        this.produtos = new Produto[this.tamanho];
-        this.id = 0;
+    private GerenciamentoProdutos(){
+        this.produtos = new LinkedList<Produto>();
         this.carrinho = "";
         this.total = 0;
     }
-
-    public void adicionarProduto(Produto produto){
-        if (this.id < this.tamanho){
-            this.produtos[this.id] = produto;
-            ++this.id;
+    
+    public static GerenciamentoProdutos getInstance(){
+        if (instance == null){
+            instance = new GerenciamentoProdutos();
         }
+        return instance;
     }
 
+    public void adicionarProduto(Produto produto){
+            this.produtos.add(produto);
+    }
+    
     public String listarProdutos(){
-        int i;
         String conteudo = "";
-        for(i = 0; i < this.id; ++i){
-            conteudo = conteudo + this.produtos[i].exibirProduto();
+        for(Produto produto: this.produtos){
+            conteudo = produto.exibirProduto();
         }
         return conteudo;
     }
 
     public Produto buscarProduto(int codigo){
-        int i;
-        for (i = 0; i < this.id; i++){
-            if(this.produtos[i].getCodigo() == codigo){
-                return this.produtos[i];
+        for (Produto produto: this.produtos){
+            if(produto.getCodigo() == codigo){
+                return produto;
             }
         }
         return null;
     }
 
     public void excluirProduto(int codigo){
-        int i, j;
-        for(i = 0; i < this.id; i++){
-            if(this.produtos[i].getCodigo() == codigo){
-                if(i == (this.id - 1)){
-                    --this.id;
-                }
-                else{
-                    for(j = i; j < (this.id-1) ; j++){
-                        this.produtos[j] = this.produtos[j+i];
-                    }
-                    --this.id;
-                    return;
-                }
-            }
-        }
-    }
-
-    public void atualizarProduto(int codigo, String nome, double preco, int quantidade, String vencimento, String categoria, String descricao){
-        int i;
-        for(i = 0; i < this.id; i++){
-            if(codigo == this.produtos[i].getCodigo()){
-                this.produtos[i].setNome(nome);
-                this.produtos[i].setPreco(preco);
-                this.produtos[i].setQuantidade(quantidade);
-                this.produtos[i].setVencimento(vencimento);
-                this.produtos[i].setCategoria(categoria);
-                this.produtos[i].setDescricao(descricao);
+        for(Produto produto: this.produtos){
+            if(produto.getCodigo() == codigo){
+                this.produtos.remove(produto);
                 return;
             }
         }
     }
 
+    public void atualizarProduto(int codigo, String nome, double preco, 
+            int quantidade, String vencimento, String categoria, String descricao){
+        for(Produto produto: this.produtos){
+            if(codigo == produto.getCodigo()){
+                produto.setNome(nome);
+                produto.setPreco(preco);
+                produto.setQuantidade(quantidade);
+                produto.setVencimento(vencimento);
+                produto.setCategoria(categoria);
+                produto.setDescricao(descricao);
+                return;
+            }
+        }
+    }
+    /*
     public void adicionarCarrinho(Produto produto, int quantidade){
         this.carrinho = this.carrinho + "\nCodigo: " + produto.getCodigo() + "\n\tNome: " + produto.getNome() + "\n\tQuantidade: " + quantidade + "\n\tPreço: " + produto.getPreco() * quantidade + "\n";
         this.total += produto.getPreco() * quantidade;
@@ -122,5 +125,5 @@ public class GerenciamentoProdutos {
         this.carrinho = "";
         this.total = 0;
         return conteudo;
-    }
+    }*/   
 }

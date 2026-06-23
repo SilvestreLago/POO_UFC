@@ -1,0 +1,7 @@
+com/mycompany/loja/view/Tela.class
+com/mycompany/loja/view/Home.class
+com/mycompany/loja/view/AtualizarProduto.class
+com/mycompany/loja/view/AdicionarProduto.class
+com/mycompany/loja/Loja.class
+com/mycompany/loja/model/Produto.class
+com/mycompany/loja/control/GerenciamentoProdutos.class

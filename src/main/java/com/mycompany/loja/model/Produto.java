@@ -1,3 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.loja.model;
+
+import com.mycompany.loja.control.GerenciamentoProdutos;
+
+/**
+ *
+ * @author silvestre
+ */
 public class Produto {
     private int codigo;
     private String nome;
@@ -8,7 +20,7 @@ public class Produto {
     private String categoria;
 
     public Produto(String nome, double preco, String vencimento, int quantidade, String categoria, String descricao) {
-        this.setCodigo(GerenciamentoProdutos.CODIGO);
+        this.codigo = GerenciamentoProdutos.CODIGO;
         this.setNome(nome);
         this.setPreco(preco);
         this.setVencimento(vencimento);
@@ -86,3 +98,4 @@ public class Produto {
         return conteudo;
     }
 }
+
