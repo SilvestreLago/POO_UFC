@@ -15,12 +15,12 @@ public class GerenciamentoProdutos {
     private LinkedList<Produto> produtos;
     public static int CODIGO = 200;
     private static GerenciamentoProdutos instance = null;
-    private String carrinho;
+    private LinkedList<String> carrinho;
     private double total;
 
     private GerenciamentoProdutos(){
         this.produtos = new LinkedList<Produto>();
-        this.carrinho = "";
+        this.carrinho = new LinkedList<String>();
         this.total = 0;
     }
     
@@ -38,7 +38,7 @@ public class GerenciamentoProdutos {
     public String listarProdutos(){
         String conteudo = "";
         for(Produto produto: this.produtos){
-            conteudo = produto.exibirProduto();
+            conteudo += produto.exibirProduto();
         }
         return conteudo;
     }
@@ -75,26 +75,32 @@ public class GerenciamentoProdutos {
             }
         }
     }
-    /*
+    
     public void adicionarCarrinho(Produto produto, int quantidade){
-        this.carrinho = this.carrinho + "\nCodigo: " + produto.getCodigo() + "\n\tNome: " + produto.getNome() + "\n\tQuantidade: " + quantidade + "\n\tPreço: " + produto.getPreco() * quantidade + "\n";
+        String conteudo = this.carrinho + "\nCodigo: " + produto.getCodigo() + "\n\tNome: " + produto.getNome() + "\n\tQuantidade: " + quantidade + "\n\tPreço: " + produto.getPreco() * quantidade + "\n";
+        this.carrinho.add(conteudo);
         this.total += produto.getPreco() * quantidade;
         produto.setQuantidade(produto.getQuantidade() - quantidade);
     }
 
     public String verCarrinho(){
-        return this.carrinho + "\nTotal: " + this.total +"\n";
+        String conteudo = "";
+        for(String compra: this.carrinho){
+            conteudo += compra;
+        }
+        return conteudo + "\nTotal: " + this.total +"\n";
     }
-
+    
+    
     public String verificarEstoque(){
         int i;
         String conteudo = "";
-        if(this.id == 0){
+        if(this.produtos.size() == 0){
             return "Nenhum item encontrado no estoque.";
         }
-        for(i = 0; i < this.id; ++i){
-            if(this.produtos[i].getQuantidade() == 0){
-                conteudo += "Código: " + this.produtos[i].getCodigo() + " Nome: "+ this.produtos[i].getNome() +" Descrição: " + this.produtos[i].getDescricao() + " Preço: " + this.produtos[i].getPreco() + "\n";
+        for(Produto produto: this.produtos){
+            if(produto.getQuantidade() == 0){
+                conteudo += "Código: " + produto.getCodigo() + " Nome: "+ produto.getNome() +" Descrição: " + produto.getDescricao() + " Preço: " + produto.getPreco() + "\n";
             }
         }
         if(conteudo.equals("")){
@@ -102,16 +108,15 @@ public class GerenciamentoProdutos {
         }
         return conteudo;
     }
-
+    
     public String verificarEstoque(int margem){
-        int i;
         String conteudo = "";
-        if(this.id == 0){
+        if(this.produtos.size() == 0){
             return "Nenhum item encontrado no estoque.";
         }
-        for(i = 0; i < this.id; ++i){
-            if(this.produtos[i].getQuantidade() <= margem){
-                conteudo += "Código: " + this.produtos[i].getCodigo() + " Nome: "+ this.produtos[i].getNome() +" Descrição: " + this.produtos[i].getDescricao() + " Preço: " + this.produtos[i].getPreco() + "\n";
+        for(Produto produto: this.produtos){
+            if(produto.getQuantidade() <= margem){
+                conteudo += "Código: " + produto.getCodigo() + " Nome: "+ produto.getNome() +" Descrição: " + produto.getDescricao() + " Preço: " + produto.getPreco() + "\n";
             }
         }
         if(conteudo.equals("")){
@@ -120,10 +125,15 @@ public class GerenciamentoProdutos {
         return conteudo;
     }
 
+    
     public String finalizarCompra(){
-        String conteudo =  this.carrinho + "\nTotal: " + this.total + "\n Compra concluída com sucesso!\n";
-        this.carrinho = "";
+        String conteudo =  "";
+        for(String compra: this.carrinho){
+            conteudo += compra;
+        }
+        conteudo += "\nTotal: " + this.total + "\n Compra concluída com sucesso!\n";
+        this.carrinho.clear();
         this.total = 0;
         return conteudo;
-    }*/   
+    }   
 }

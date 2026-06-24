@@ -36,6 +36,10 @@ public class Home extends javax.swing.JFrame {
         jButtonAdicionar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButtonBuscar = new javax.swing.JButton();
+        jButtonListar = new javax.swing.JButton();
+        jButtonRemover = new javax.swing.JButton();
+        jButtonAdicionarCarrinho = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,38 +61,75 @@ public class Home extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 0, 255));
         jLabel1.setText("Home");
 
+        jButtonBuscar.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        jButtonBuscar.setForeground(new java.awt.Color(255, 0, 255));
+        jButtonBuscar.setText("Buscar Produto");
+        jButtonBuscar.addActionListener(this::jButtonBuscarActionPerformed);
+
+        jButtonListar.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        jButtonListar.setForeground(new java.awt.Color(255, 0, 255));
+        jButtonListar.setText("Listar Produto");
+        jButtonListar.addActionListener(this::jButtonListarActionPerformed);
+
+        jButtonRemover.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        jButtonRemover.setForeground(new java.awt.Color(255, 0, 255));
+        jButtonRemover.setText("Remover Produto");
+        jButtonRemover.addActionListener(this::jButtonRemoverActionPerformed);
+
+        jButtonAdicionarCarrinho.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        jButtonAdicionarCarrinho.setForeground(new java.awt.Color(255, 0, 255));
+        jButtonAdicionarCarrinho.setText("Adicionar Carrinho");
+        jButtonAdicionarCarrinho.addActionListener(this::jButtonAdicionarCarrinhoActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jButtonAtualizar)
-                .addGap(48, 48, 48)
-                .addComponent(jButtonAdicionar)
-                .addGap(0, 19, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabel1)))
-                .addContainerGap(176, Short.MAX_VALUE))
+                        .addComponent(jButton1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 32, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(158, 158, 158))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jButtonRemover, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonAdicionar))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jButtonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonListar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButtonAdicionarCarrinho))
+                                .addGap(32, 32, 32))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addGap(29, 29, 29)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAdicionar)
+                    .addComponent(jButtonBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAtualizar)
-                    .addComponent(jButtonAdicionar))
-                .addContainerGap(117, Short.MAX_VALUE))
+                    .addComponent(jButtonListar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRemover)
+                    .addComponent(jButtonAdicionarCarrinho))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();
@@ -123,6 +164,51 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        int busca = Integer.parseInt(JOptionPane.showInputDialog("Digite o código que deseja atualizar: "));
+        GerenciamentoProdutos genProd = GerenciamentoProdutos.getInstance();
+        Produto produto = genProd.buscarProduto(busca);
+        if(produto == null){
+            JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Produto: " + produto.exibirProduto());
+        }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
+        // TODO add your handling code here:
+        GerenciamentoProdutos genProd = GerenciamentoProdutos.getInstance();
+        JOptionPane.showMessageDialog(null, genProd.listarProdutos());
+    }//GEN-LAST:event_jButtonListarActionPerformed
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        // TODO add your handling code here:
+        int busca = Integer.parseInt(JOptionPane.showInputDialog("Digite o código que deseja atualizar: "));
+        GerenciamentoProdutos genProd = GerenciamentoProdutos.getInstance();
+        Produto produto = genProd.buscarProduto(busca);
+        if(produto == null){
+            JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+        }else{
+            genProd.excluirProduto(produto.getCodigo());
+            JOptionPane.showMessageDialog(null, "Produto excluido com sucesso!");
+        }
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
+
+    private void jButtonAdicionarCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarCarrinhoActionPerformed
+        // TODO add your handling code here:
+        int busca = Integer.parseInt(JOptionPane.showInputDialog("Digite o código que deseja atualizar: "));
+        GerenciamentoProdutos genProd = GerenciamentoProdutos.getInstance();
+        Produto produto = genProd.buscarProduto(busca);
+        if(produto == null){
+            JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+        }else{
+            int quantidade = Integer.parseInt(JOptionPane.showInputDialog("Digite o código que deseja atualizar: "));
+            genProd.adicionarCarrinho(produto, quantidade);
+            JOptionPane.showMessageDialog(null, "Produto adicionado com sucesso!");
+        }
+    }//GEN-LAST:event_jButtonAdicionarCarrinhoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -151,7 +237,11 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAdicionar;
+    private javax.swing.JButton jButtonAdicionarCarrinho;
     private javax.swing.JButton jButtonAtualizar;
+    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonListar;
+    private javax.swing.JButton jButtonRemover;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

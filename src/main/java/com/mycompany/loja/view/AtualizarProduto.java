@@ -6,6 +6,7 @@ package com.mycompany.loja.view;
 
 import com.mycompany.loja.control.GerenciamentoProdutos;
 import com.mycompany.loja.model.Produto;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,8 +19,12 @@ public class AtualizarProduto extends javax.swing.JFrame {
     /**
      * Creates new form AtualizarProd
      */
+    
+    private int codigo;
+    
     public AtualizarProduto(Produto produto) {
         initComponents();
+        this.codigo = produto.getCodigo();
         this.nome.setText(produto.getNome());
         this.descricao.setText(produto.getDescricao());
         this.categoria.setText(produto.getCategoria());
@@ -191,7 +196,12 @@ public class AtualizarProduto extends javax.swing.JFrame {
 
         GerenciamentoProdutos genProd = GerenciamentoProdutos.getInstance();
         Produto produto = new Produto(varNome, varPreco, varVencimento, varQuantidade, varCategoria, varDescricao);
-        genProd.adicionarProduto(produto);
+        genProd.atualizarProduto(this.codigo, varNome, varPreco, varQuantidade, varVencimento, varCategoria, varDescricao);
+        
+        this.setVisible(false);
+        JOptionPane.showMessageDialog(null, "Produto editado com sucesso!");
+        Home home = new Home();
+        home.setVisible(true);
     }//GEN-LAST:event_AtualizarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
